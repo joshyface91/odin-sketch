@@ -25,7 +25,7 @@
 
     center.append(reset);
 
-    //add logic for button prompt
+    //adds logic for button prompt
     let sizeDesign = prompt("Please enter a number more than 4 and less than 100 to determine your preferred sketch-pad size:", 16);
 
     if (sizeDesign == null || sizeDesign == "" || sizeDesign < 4 || sizeDesign > 100) {
@@ -48,7 +48,7 @@
     stylesheet.insertRule(".child { height: " + 800 / sizeDesign + "px; width: " + 800 / sizeDesign + "px; }", 0);
     reset.addEventListener("click", resetGrid);
     function resetGrid() {
-        
+        window.location.reload();
     }
 
     //add parentGrid to the visible body of the html
@@ -58,30 +58,20 @@
     //adds a hover event to the children divs of the grid so that there is a background color change when the mouse hovers   
     const children = document.querySelectorAll(".child");
     for (i=0; i<children.length; i++) {
+        function getRandomInt () {
+            return Math.floor(Math.random() * 255);
+        }
+        let colorR = getRandomInt();
+        let colorG = getRandomInt();
+        let colorB = getRandomInt();
         children[i].addEventListener(
             "mouseover",
             (event) => {
-                event.target.style.backgroundColor = "#999494";
+                event.target.style.backgroundColor = "rgb(" + colorR + " " + colorG + " " + colorB + ")";
                 setTimeout(() => {
                     event.target.style.backgroundColor = "";
-                }, 1000);
+                }, 3000);
             },
             false,
         );
     }
-    
-    // children.addEventListener(
-    //     "mouseover",
-    //     (event) => {
-    //         event.target.style.backgroundColor = "#999494";
-    //         setTimeout(() => {
-    //             event.target.style.backgroundColor = "";
-    //         }, 1000);
-    //     },
-    //     false,
-    // );
-
-
-
-    //testing
-    console.log();
